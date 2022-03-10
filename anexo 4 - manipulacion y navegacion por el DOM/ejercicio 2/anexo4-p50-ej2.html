@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo 4 - Ejercicio 2</title>
+    <style type="text/css">
+        body{
+            font-family: Arial, sans-serif;
+        }
+        h2{
+            width: 80%;
+            height: auto;
+            text-align: center;
+            color: white;
+            background-color: blue; 
+    
+            margin-left: 10%;
+        }
+        .current{
+            background-color: yellow;
+        }
+        .disabled{
+            background-color: red;
+            color: white;
+        }
+        ul{
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2>ANEXO 4 - Pag 50 implementar las siguientes selecciones empleando JQuery:</h2>
+
+    <ul>
+        <li> Añadir 5 nuevos ítems al final de la lista desordenada con id="myList" empleando un bucle.</li>
+        <li> Remover los ítems impares de la lista.</li>
+        <li> Añadir un elemento <i>h2</i> y un párrafo al final de la capa con estilo "module".</li>
+        <li> Añadir otra opción al elemento select con el valor "Wednesday".</li>
+        <li> Añadir una nueva capa con estilo "module" a la página después del último; luego añadir una copia de una de las imágenes existentes dentro de la nueva capa.</li>
+    </ul>
+    <hr>
+
+    <div class="module">
+        <ul id="myList">
+            <li>Fila con Index #0</li>
+            <li>Fila con Index #1</li>
+            <li class="current">Fila con Index #2</li>
+            <li>Fila con Index #3</li>
+        </ul>
+    </div>
+
+    <div>
+        <form id="formulario">
+            <label for="hombre">Hombre</label>
+            <input type="radio" name="gender" id="hombre" value="hombre"><br>
+            <label for="mujer">Mujer</label>
+            <input type="radio" name="gender" id="mujer" value="mujer"><br>
+            <label for="otro">Otro</label>
+            <input type="radio" name="gender" id="otro" value="otro"><br><br>
+        </form>
+    </div>
+
+    <div class="module">
+        <table id="slideShow" border="1">
+            <tr><td>Celda con Index #0</td></tr>
+            <tr><td>Celda con Index #1</td></tr>
+            <tr><td>Celda con Index #2</td></tr>
+            <tr><td>Celda con Index #3</td></tr>
+        </table>
+    </div>
+
+    <div>
+        <img src="https://picsum.photos/200/300" alt="texto" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="ejemplo" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="ejercicio 4" height="200" width="200">
+        <img src="https://picsum.photos/200/300" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="de" height="200" width="200">
+    </div>
+
+    <div id="specials">
+        <p>¿Qué día de la semana te gusta menos?</p>
+        <ul>
+            <li>
+                <select id="dias">
+                    <option value="--">Seleccionar</option>
+                    <option value="monday">Lunes</option>
+                    <option value="tuesday">Martes</option>
+                </select>
+            </li>
+            <li>
+                <input type="submit" value="enviar">
+            </li>
+        </ul>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $().ready(function() {
+//Añadir 5 nuevos ítems al final de la lista desordenada con id="myList" empleando un bucle.
+            for (let i = 0; i <= 5; i++) {
+                $("#myList").append("<li>Fila con Index #" + (i+4) + "</li>");
+            }
+//Remover los ítems impares de la lista."
+            $("#myList :odd").remove();
+//Añadir un elemento h2 y un párrafo al final de la capa con estilo "module".
+            $("div.module").append("<h2>H2</h2>" + "<p>lorem</p>");
+//Añadir otra opción al elemento select con el valor "Wednesday".
+            $("#specials select").append(`<option value="wednesday">Miercoles</option>`);
+//Añadir una nueva capa con estilo "module" a la página después del último; luego añadir una copia de una de las imágenes existentes dentro de la nueva capa.
+            let $nuevo_div = $(`<div class="module"/>`);
+            let $img = $("img").first();
+            $nuevo_div.append($img.clone()).insertAfter("div.module:last");
+        });   
+    </script>
+</body>
+</html>

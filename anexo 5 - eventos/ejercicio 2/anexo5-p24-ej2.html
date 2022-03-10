@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo 5 - Ejercicio 2</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        img{
+            margin: 20px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    
+    <img src="https://picsum.photos/200/300" id="imagen">
+    
+    <div id="botones">
+        <button id="arriba">ARRIBA</button>
+        <button id="abajo">ABAJO</button>
+        <button id="izquierda">IZQUIERDA</button>
+        <button id="derecha">DERECHA</button>
+    </div>
+
+    <script>
+        $().ready(function(){
+            let verticalMovement = 0;
+            let horizontalMovement = 0;
+            function moverArriba(event){
+                $("#imagen").css({"top" : (verticalMovement - 1)});
+                verticalMovement--;
+            }
+            function moverAbajo(event){
+                $("#imagen").css({"top" : verticalMovement + 1});
+                verticalMovement++;
+            }
+            function moverIzquierda(event){
+                $("#imagen").css({"left" : horizontalMovement - 1});
+                horizontalMovement--;
+            }
+            function moverDerecha(event){
+                $("#imagen").css({"left" : horizontalMovement + 1});
+                horizontalMovement++;
+            }
+            $("#arriba").click(moverArriba);
+            $("#abajo").click(moverAbajo);
+            $("#izquierda").click(moverIzquierda);
+            $("#derecha").click(moverDerecha);
+        });
+    </script>
+</body>
+</html>

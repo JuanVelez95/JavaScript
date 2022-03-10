@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anexo 6 - Ejercicio 1</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        h2 {
+            width: 80%;
+            height: auto;
+            text-align: center;
+            color: white;
+            background-color: blue;
+            margin-left: 10%;
+        }
+
+        h3 {
+            text-align: center;
+            background-color: aqua;
+            width: 60%;
+            margin-left: 20%;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .menu {
+            width: 30%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .menu li {
+            padding: 0.5em;
+            background-color: aquamarine;
+            border-radius: 0.3em;
+            text-align: center;
+        }
+
+        .submenu {
+            display: none;
+            flex-direction: column;
+            position: absolute;
+            left: 11.8%;
+            margin-top: 0.5em;
+        }
+
+        .submenu li {
+            border: solid 1px gray;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>ANEXO 6 - Pag 13</h2>
+    <hr />
+
+    <nav id="nav">
+        <ul class="menu">
+            <li>Home</li>
+            <li class="itemSubmenu">
+                Resources
+                <ul class="submenu">
+                    <li><a href="#">Foods</a></li>
+                    <li><a href="#">Drinks</a></li>
+                    <li><a href="#">Deserves</a></li>
+                </ul>
+            </li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <div id="blog">
+        <ul>
+            <li>
+                <h3>Comidas</h3>
+                <p>
+                    Explorar la comida típica de Barcelona es una garantía para poder
+                    disfrutar de sabores de mesa deliciosos y muy diversos. Una cocina
+                    que hunde sus raíces, fundamentalmente en el Mediterráneo. Por eso
+                    triunfan los guisos marineros, entre ellos, las variadas formas de
+                    preparar el arroz, el delicioso suquet de peix o la esqueixada de
+                    bacallà. Pero también tienen su espacio las preparaciones de tierra
+                    adentro, como la escudella i carn d'olla. A esta se suman las
+                    butifarras con mongetes, las cocas, los canelones y, por supuesto,
+                    los calçots, con su deliciosa salsa romesco.
+                </p>
+            </li>
+            <li>
+                <h3>Bebidas</h3>
+                <p>
+                    Las bebidas catalanas se adaptan a tus gustos: vermut, cava, vino,
+                    cerveza, horchata de chufa, granizado, suizo... ¡Una bebida para
+                    cada momento!
+                </p>
+            </li>
+            <li>
+                <h3>Postres</h3>
+                <p>
+                    Descubre cuáles son los dulces típicos de Barcelona y de Cataluña,
+                    conoce un poco sobre cada uno de ellos y aprovecha de probar esas
+                    delicias durante el viaje. La región catalana siempre tuvo mucha
+                    fama por su gastronomía, y eso incluye los dulces y delicias de
+                    sobremesas. La zona está situada entre el mar y la montaña, fue
+                    habitada por distintos pueblos, por lo que posee una gran variedad
+                    de platos. A continuación, te recomendaremos una lista de los 10
+                    mejores y más típicos dulces de Cataluña, si deseas conocer los
+                    mejores restaurantes en Barcelona solo debes dar un vistazo a
+                    nuestro artículo.
+                </p>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <ul id="slideShow">
+            <li>Fruit</li>
+            <li>Vegetables</li>
+            <li>Bread</li>
+        </ul>
+    </div>
+
+    <div class="module">
+        <h2>Esta es la pestaña 1</h2>
+        <ul id="myList">
+            <li>Fila con Index #0</li>
+            <li>Fila con Index #1</li>
+            <li>Fila con Index #2</li>
+            <li>Fila con Index #3</li>
+        </ul>
+    </div>
+
+    <div class="module">
+        <h2>Esta es la pestaña 2</h2>
+        <table id="slideShow" border="1">
+            <tr>
+                <td>Celda con Index #0</td>
+            </tr>
+            <tr>
+                <td>Celda con Index #1</td>
+            </tr>
+            <tr>
+                <td>Celda con Index #2</td>
+            </tr>
+            <tr>
+                <td>Celda con Index #3</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="module">
+        <h2>Esta es la pestaña 3</h2>
+        <img src="https://picsum.photos/200/300" alt="texto" height="200" width="200" />
+        <img src="https://picsum.photos/200/300" alt="de" height="200" width="200" />
+        <img src="https://picsum.photos/200/300" alt="ejemplo" height="200" width="200" />
+        <img src="https://picsum.photos/200/300" alt="ejercicio 4" height="200" width="200" />
+        <img src="https://picsum.photos/200/300" height="200" width="200" />
+    </div>
+
+    <div id="specials">
+        <p>¿De cual club de fútbol eres aficionado?</p>
+        <ul>
+            <li>
+                <select id="clubes">
+                    <option value="--">Seleccionar</option>
+                    <option value="1">FC Barcelona</option>
+                    <option value="2">Real Madrid FC</option>
+                    <option value="3">Sevilla FC</option>
+                    <option value="4">Málaga CF</option>
+                </select>
+            </li>
+            <li>
+                <input type="submit" value="enviar" />
+            </li>
+        </ul>
+    </div>
+    <script>
+        $(document).ready(function () {
+            //primer ejercicio
+
+            $("#blog")
+                .find("h3")
+                .on("click", function () {
+                    let $h3 = $(this);
+                    let $p = $h3.next("p");
+                    $p.show("fast");
+                    $h3.parents().siblings().find("p:visible").hide("fast");
+                });
+            //segundo ejercicio
+
+            $(".itemSubmenu").hover(
+                function () {
+                    $(this).find("ul").toggle("fast");
+                },
+                function () {
+                    $(this).find("ul").toggle("fast");
+                }
+            );
+
+            //tercer ejercicio
+
+            $("#slideShow li").hide();
+
+            function startAnimation() {
+                let $slideshow = $("#slideShow li");
+                $slideshow.first().show(500).delay(1000).hide(500);
+                $slideshow.eq(1).delay(2000).show(800).delay(1000).hide(800);
+                $slideshow.eq(2).delay(4600).show(800).delay(1000).hide(800);
+                setTimeout(startAnimation, 7200);
+            }
+            startAnimation();
+
+        });
+    </script>
+</body>
+
+</html>

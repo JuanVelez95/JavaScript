@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>pagina 35 ejercicios jQuery</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+	body{
+		font-family: Arial, sans-serif;
+	}
+	h2{
+		width: 80%;
+		height: auto;
+		text-align: center;
+		color: white;
+		background-color: blue; 
+
+		margin-left: 10%;
+	}
+	small{
+		border:2px solid tomato;
+		background-color: #FC9;
+	}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<h2>ANEXO 3 - Pag 35 implementar las siguientes selecciones empleando JQuery:</h2>
+<ul>
+	<li> Seleccionar todos los elementos div que poseen la clase “module”.</li>
+	<li> Seleccionar el tercer ítem de la lista desordenada con id= #myList.</li>
+	<li> Seleccionar el elemento &lt;label&gt; del elemento input utilizando un selector de
+	atributo.</label></li>
+	<li> Averiguar cuantos elementos en la página están ocultos (length).</li>
+	<li> Averiguar cuantas imágenes en la página poseen el atributo alt.</li>
+	<li> Seleccionar todas las filas impares del cuerpo de la tabla.</li>
+</ul>
+<small>
+(*) Para comprobar las selecciones almacenalas en una variable y muéstrala en la consola del
+navegador mediante el comando Console.dir().</small>
+<hr>
+
+<div class="module">
+	<ul id="myList">
+		<li>Fila con Index #0</li>
+		<li>Fila con Index #1</li>
+		<li>Fila con Index #2</li>
+		<li>Fila con Index #3</li>
+	</ul>
+</div>
+
+<div>
+	<form id="formulario">
+		<label for="hombre">Hombre</label>
+		<input type="radio" name="gender" id="hombre" value="hombre"><br>
+		<label for="mujer">Mujer</label>
+		<input type="radio" name="gender" id="mujer" value="mujer"><br>
+		<label for="otro">Otro</label>
+		<input type="radio" name="gender" id="otro" value="otro"><br><br>
+	</form>
+</div>
+
+<div class="module">
+	<table id="myTable" border="1">
+		<tr><td>Celda con Index #0</td></tr>
+		<tr><td>Celda con Index #1</td></tr>
+		<tr><td>Celda con Index #2</td></tr>
+		<tr><td>Celda con Index #3</td></tr>
+	</table>
+</div>
+
+<div>
+	<img src="imagen.jpg" alt="texto" height="200" width="200">
+	<img src="imagen1.jpg" height="200" width="200">
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+
+$().ready(function () {
+//seleccionar todos los elementos div con clase 'module'
+	let $divModule = $("div").filter(".module");
+	console.dir($divModule);
+//seleccionar el tercer item de la lista con id 'myList'
+	let $tercerItem = $('#myList li').get(2);
+	console.dir($tercerItem);
+//seleccionar el elemento <label> del elemento input utilizando un selector de atributo.
+	let $label1 = $('label[for="hombre"]');
+	console.dir($label1);
+	let $label2 = $('label[for="mujer"]');
+	console.dir($label2);
+	let $label3 = $('label[for="otro"]');
+	console.dir($label3);
+//averiguar cuantos elementos en la página están ocultos
+	let $elementosOcultos = $(':hidden').length;
+	console.dir('hay ' + $elementosOcultos + ' elementos ocultos en la página.');
+//averiguar cuantas imágenes en la página poseen el atributo alt.
+	let $imgAlt = $('img[alt]').length;
+	console.dir('hay ' + $imgAlt + ' imagen/es que posee/n alt.');
+//seleccionar todas las filas impares del cuerpo de la tabla.
+	let $filasImpares = $('#myTable tr:odd');
+	console.dir($filasImpares);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo 4 - Ejercicio 1</title>
+    <style type="text/css">
+        body{
+            font-family: Arial, sans-serif;
+        }
+        h2{
+            width: 80%;
+            height: auto;
+            text-align: center;
+            color: white;
+            background-color: blue; 
+    
+            margin-left: 10%;
+        }
+        .current{
+            background-color: yellow;
+        }
+        .disabled{
+            background-color: red;
+            color: white;
+        }
+        ul{
+            list-style: none;
+            padding-left: 0;
+        }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2>ANEXO 4 - Pag 50 implementar las siguientes selecciones empleando JQuery:</h2>
+
+    <ul>
+        <li> Seleccionar todas las imágenes en la página mostrando en la consola el valor del atributo "alt" de cada imagen.</li>
+        <li> Seleccionar el elemento <i>input</i> del formulario y añadirle la clase "input_text".</li>
+        <li> Seleccionar el ítem que posee la clase "current" dentro de la lista con "id=myList", eliminarlo de la lista, y añadir la clase "current" al siguiente ítem de la lista.</li>
+        <li> Seleccionar el elemento select dentro del elemento con "id=specials", y a continuación navegar por el DOM hasta el elemento del botón <i>submit</i>.</li>
+        <li> Seleccionar el primer ítem de la lista con "id=slideShow"; añadirle la clase "current" al mismo y luego añadir la clase "disabled" al resto de elementos hermanos.</li>
+    </ul>
+    <hr>
+
+    <div class="module">
+        <ul id="myList">
+            <li>Fila con Index #0</li>
+            <li>Fila con Index #1</li>
+            <li class="current">Fila con Index #2</li>
+            <li>Fila con Index #3</li>
+        </ul>
+    </div>
+
+    <div>
+        <form id="formulario">
+            <label for="hombre">Hombre</label>
+            <input type="radio" name="gender" id="hombre" value="hombre"><br>
+            <label for="mujer">Mujer</label>
+            <input type="radio" name="gender" id="mujer" value="mujer"><br>
+            <label for="otro">Otro</label>
+            <input type="radio" name="gender" id="otro" value="otro"><br><br>
+        </form>
+    </div>
+
+    <div class="module">
+        <table id="slideShow" border="1">
+            <tr><td>Celda con Index #0</td></tr>
+            <tr><td>Celda con Index #1</td></tr>
+            <tr><td>Celda con Index #2</td></tr>
+            <tr><td>Celda con Index #3</td></tr>
+        </table>
+    </div>
+
+    <div>
+        <img src="https://picsum.photos/200/300" alt="texto" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="de" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="ejemplo" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="ejercicio 4" height="200" width="200">
+        <img src="https://picsum.photos/200/300" height="200" width="200">
+    </div>
+
+    <div id="specials">
+        <p>¿De cual club de fútbol eres aficionado?</p>
+        <ul>
+            <li>
+                <select id="clubes">
+                    <option value="--">Seleccionar</option>
+                    <option value="1">FC Barcelona</option>
+                    <option value="2">Real Madrid FC</option>
+                    <option value="3">Sevilla FC</option>
+                    <option value="4">Málaga CF</option>
+                </select>
+            </li>
+            <li>
+                <input type="submit" value="enviar">
+            </li>
+        </ul>
+    </div>
+    <script>
+        $().ready(function() {
+//Seleccionar todas las imágenes en la página mostrando en la consola el valor del atributo "alt" de cada imagen.
+            let $imagenes = $("body").find("img");
+            $($imagenes).each(function(){
+                console.log($(this).attr("alt"));
+            });
+//Seleccionar el elemento input del formulario y añadirle la clase "input_text".
+            $("#formulario").find("input").addClass("input_text");
+//Seleccionar el ítem que posee la clase "current" dentro de la lista con "id=myList", eliminarlo de la lista, y añadir la clase "current" al siguiente ítem de la lista.
+            let $itemCurrent = $("#myList li[class=current]");
+            $itemCurrent.next().addClass("current");
+            $itemCurrent.remove();
+//Seleccionar el elemento select dentro del elemento con "id=specials", y a continuación navegar por el DOM hasta el elemento del botón submit.
+            $("#specials select").parent().next().children();
+//Seleccionar el primer ítem de la lista con "id=slideShow"; añadirle la clase "current" al mismo y luego añadir la clase "disabled" al resto de elementos hermanos.
+            let $primerTr = $("#slideShow tr").first();
+            $primerTr.addClass("current");
+            $primerTr.nextAll().addClass("disabled");
+        });   
+    </script>
+</body>
+</html>

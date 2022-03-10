@@ -9,10 +9,10 @@ Este repositorio fue creado con la intención de subir todos los ejercicios real
 - Programación orientada a objetos
 - DOM
 - JQuery
- - Selección y manipulación de elementos
- - Manipulación y navegación por el DOM
- - Manejo de eventos
- - Manejo de efectos
- - Formularios
+  - Selección y manipulación de elementos
+  - Manipulación y navegación por el DOM
+  - Manejo de eventos
+  - Manejo de efectos
+  - Formularios
 
-##### Los ejercicios se agregan en carpetadas identificadas para que sea mas fácil si visualización.
+##### Los ejercicios se agregan en carpetadas identificadas para que sea mas fácil su visualización.

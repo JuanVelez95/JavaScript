@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo 5 - Ejercicio 1</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+    <div id="botones">
+        <button id="mercurio">MERCURIO</button></br></br>
+        <button id="venus">VENUS</button></br></br>
+        <button id="tierra">TIERRA</button></br></br>
+        <button id="marte">MARTE</button></br></br>
+    </div>
+    
+    <img src="" id="imagen_planeta">
+    <script>
+        $().ready(function(){
+            $("#botones button").click(function(event){      
+                $("#imagen_planeta").prop("src", $(this).attr("id") + ".jpg");
+            });
+        });
+    </script>
+</body>
+</html>

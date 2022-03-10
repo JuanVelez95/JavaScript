@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anexo 5 - Ejercicio 5</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        body{
+            font-family: Arial, sans-serif;
+        }
+        h2{
+            width: 80%;
+            height: auto;
+            text-align: center;
+            color: white;
+            background-color: blue; 
+            margin-left: 10%;
+        }
+        ul{
+            list-style: none;
+            padding-left: 0;
+        }
+        .current{
+            background-color: yellow;
+        }
+        </style>
+</head>
+<body>
+    <h2>ANEXO 5 - Pag 25</h2>
+    <hr>
+
+    <div class="module">
+        <h2>Esta es la pestaña 1</h2>
+        <ul id="myList">
+            <li>Fila con Index #0</li>
+            <li>Fila con Index #1</li>
+            <li>Fila con Index #2</li>
+            <li>Fila con Index #3</li>
+        </ul>
+    </div>
+
+    <div>
+        <form id="formulario">
+            <label for="hombre">Hombre</label>
+            <input type="radio" name="gender" id="hombre" value="hombre"><br>
+            <label for="mujer">Mujer</label>
+            <input type="radio" name="gender" id="mujer" value="mujer"><br>
+            <label for="otro">Otro</label>
+            <input type="radio" name="gender" id="otro" value="otro"><br><br>
+        </form>
+    </div>
+
+    <div class="module">
+        <h2>Esta es la pestaña 2</h2>
+        <table id="slideShow" border="1">
+            <tr><td>Celda con Index #0</td></tr>
+            <tr><td>Celda con Index #1</td></tr>
+            <tr><td>Celda con Index #2</td></tr>
+            <tr><td>Celda con Index #3</td></tr>
+        </table>
+    </div>
+
+    <div class="module">
+        <h2>Esta es la pestaña 3</h2>
+        <img src="https://picsum.photos/200/300" alt="texto" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="de" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="ejemplo" height="200" width="200">
+        <img src="https://picsum.photos/200/300" alt="ejercicio 4" height="200" width="200">
+        <img src="https://picsum.photos/200/300" height="200" width="200">
+    </div>
+
+    <div id="specials">
+        <p>¿De cual club de fútbol eres aficionado?</p>
+        <ul>
+            <li>
+                <select id="clubes">
+                    <option value="--">Seleccionar</option>
+                    <option value="1">FC Barcelona</option>
+                    <option value="2">Real Madrid FC</option>
+                    <option value="3">Sevilla FC</option>
+                    <option value="4">Málaga CF</option>
+                </select>
+            </li>
+            <li>
+                <input type="submit" value="enviar">
+            </li>
+        </ul>
+    </div>
+    <script>
+        $().ready(function() {
+            $("div.module:gt(0)").css({"visibility" : "hidden"});
+            let $primerModule = $("div.module").eq(0);
+            $(`<ul id="primeraLista"/>`).insertBefore($primerModule);
+            $("div.module").each(function(){
+                let $moduleSelected = $(this);
+                let $moduleH2 = $moduleSelected.find("h2");
+                let $item = $("<li>" + $moduleH2.text() + "</li>").appendTo("#primeraLista");
+                $item.on("click",function(){
+                    $item.addClass("current").siblings().removeClass("current");
+                    $moduleSelected.css({"visibility" : "visible"}).siblings(".module").css({"visibility" : "hidden"});
+                });
+            });
+        });   
+    </script>
+</body>
+</html>
