@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <title>Formularios</title>
+    <style type="text/css">
+        .error{
+            display: none;
+            color: red;
+        }
+        span{
+            font-size: 1.2em;
+            color: gray;
+        }
+        .total{
+            color: darkorange;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <span>Nombre</span><br />
+        <input type="text" id="nombre" required />
+        <output class="error" id="err_nombre">* Nombre obligatorio</output>
+        <br /><br />
+        <span>Frutas disponibles</span><br />
+        <select name="frutas" id="frutas" size="4">
+            <option value="3">Naranjas</option>
+            <option value="2.25">Manzanas</option>
+            <option value="2.5">Limones</option>
+            <option value="4.25">Tomates</option>
+        </select>
+        <output class="error" id="err_seleccion">* Fruta obligatoria</output>
+        <br /><br />
+        <span>Método de pago</span><br />
+        <select name="pago" id="pago">
+            <option value="0">-----</option>
+            <option value="4">VISA</option>
+            <option value="2.5">MASTERCARD</option>
+        </select>
+        <output class="error" id="err_metodoPago">* Método de pago obligatorio</output>
+        <br /><br />
+        <span>Peso en Kg</span><br />
+        <input type="text" id="peso" size="5" required />
+        <output class="error" id="err_peso">* Peso en Kilos obligatorios</output>
+        <br /><br />
+        <input type="button" value="Calcular" /><br /><br />
+        <span class="total">TOTAL:</span><br />
+        <input type="text" id="total" size="6">
+    </form>
+    <script>
+        $().ready(function () {
+            function validarVacio(valor) {
+                if (valor.length > 0) {
+                    $("#err_nombre").hide();
+                    return true;
+                } else {
+                    alert("No se ha indicado el nombre");
+                    $("#err_nombre").show();
+                    return false;
+                }
+            }
+            function validarSeleccion(valor) {
+                if (valor > 0) {
+                    $("#err_seleccion").hide();
+                    return true;
+                } else {
+                    alert("Debe seleccionar una fruta");
+                    $("#err_seleccion").show();
+                    return false;
+                }
+            }
+            function validarMetodoPago(valor) {
+                if (valor > 0) {
+                    $("#err_metodoPago").hide();
+                    return true;
+                } else {
+                    alert("Ingrese un método de pago");
+                    $("#err_metodoPago").show();
+                    return false;
+                }
+            }
+            function validarValor(valor) {
+                if ($.isNumeric(valor) && valor >= 0 && valor <= 10) {
+                    $("#err_peso").hide();
+                    return true;
+                } else {
+                    alert("Peso incorrecto");
+                    $("#err_peso").show();
+                    return false;
+                }
+            }
+            function calcular() {
+                let $nombre = $("#nombre").val();
+                let $fruta = $("#frutas option:selected").val();
+                let $metodoPago = $("#pago option:selected").val();
+                let $peso = $("#peso").val();
+                if (validarVacio($nombre) && validarSeleccion($fruta) && validarMetodoPago($metodoPago) && validarValor($peso)) {
+                    let $descuento = $("#pago option:selected").val() / 100;
+                    if ( $peso >= 5 ) {
+                        let $cuentaConDescuento = ($fruta * $peso) - (($fruta * $peso) * $descuento);
+                        alert("Gracias por su compra " + $nombre + ", su total es de: € " + $cuentaConDescuento);
+                        $("#total").val("€ " + $cuentaConDescuento);
+                    } else {
+                        let $cuentaSinDescuento = $fruta * $peso;
+                        alert("Gracias por su compra " + $nombre + ", su total es de: € " + $cuentaSinDescuento);
+                        $("#total").val("€ " + $cuentaSinDescuento);
+                    }
+                }
+            }
+            $("input:button").on("click", function () {
+                calcular();
+            });
+        });
+    </script>
+</body>
+
+</html>
