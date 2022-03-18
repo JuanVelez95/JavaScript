@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>JQueryUI</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"
+	integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="jquery-ui-1.13.1.custom/jquery-ui.css">
+	<script src="jquery-ui-1.13.1.custom/jquery-ui.min.js"></script>
+	<style type="text/css">
+		body{
+			font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+		}
+		#cabecera{
+			width: 30%;
+			display: flex;
+			justify-content: space-between;
+			background-color: rgb(255, 181, 43);
+		}
+		#cabecera p{
+			display: inline;
+			margin: .5em 2.2em;
+			font-weight: bold;
+		}
+		#usuario{
+			width: 36.8%;
+			display: flex;
+			justify-content: space-between;
+		}
+		#usuario p{
+			display: inline;
+			margin: .75em 0;
+			width: 6em;
+			text-align: center;
+		}
+		#usuario .nombre{
+			margin-right: 1em;
+		}
+		#añadir{
+			margin: 1em;
+		}
+		#btn_eliminar{
+			margin: 0;
+		}
+		.error{
+			display: none;
+			width: 12em;
+			padding: .2em;
+		}
+		.invalido{
+			background-color: red;
+			color: white;
+		}
+	</style>
+	<script>
+		$().ready(function () { 
+
+//funcion para validar el DNI
+			function validarDni(valor){
+				let letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+				if ( !(/^\d{8}[A-Z]$/.test(valor)) ) {
+					$("#err_dni").show();
+					$("#dni").addClass("invalido");
+					return  false;
+				} else if (valor.charAt(8) != letras[(valor.substring(0, 8))%23]) {
+					$("#err_dni").show();
+					$("#dni").addClass("invalido");
+					return false;
+				} else {
+					$("#err_dni").hide();
+					$("#dni").removeClass("invalido");
+					return true;
+				}
+			}
+//funcion para validar el NOMBRE
+			function validarNombre(valor){
+				if (valor.length > 0) {
+					$("#err_nombre").hide();
+					$("#nombre").removeClass("invalido");
+					return true;
+				} else {
+					$("#err_nombre").show();
+					$("#nombre").addClass("invalido");
+					return false;
+				}
+			}
+//funcion para validar el TELEFONO
+			function validarTelefono(valor) {
+                if (/^\d{9}$/.test(valor)) {
+					$("#err_tel").hide();
+					$("#telefono").removeClass("invalido");
+					return true;
+				} else {
+					$("#err_tel").show();
+					$("#telefono").addClass("invalido");
+					return false;
+				}
+			}
+//funcion para limpiar FORMULARIO
+			function limpiar() {
+				$("#dni").val("").removeClass("invalido");
+				$("#nombre").val("").removeClass("invalido");
+				$("#telefono").val("").removeClass("invalido");
+				$("#err_dni").hide();
+				$("#err_nombre").hide();
+				$("#err_tel").hide();
+			}
+//funcion para validar NUEVO USUARIO
+			let $dni = $("#dni");
+			let $nombre = $("#nombre");
+			let $telefono = $("#telefono");
+
+			function validarNewUser() {
+				if ( validarDni($dni.val()) && validarNombre($nombre.val()) && validarTelefono($telefono.val()) ) {
+					let $nuevo = $("#usuario").clone();
+					$nuevo.show();
+					$nuevo.find("p.dni").text($dni.val());
+					$nuevo.find("p.nombre").text($nombre.val());
+					$nuevo.find("p.telefono").text($telefono.val());
+					$("#tabla").append($nuevo);
+					limpiar();
+					return true;
+				}
+			}
+//cuadro de dialogo
+			let cuadro_dialogo = $("#dialogo").dialog({ 
+				autoOpen: false, 
+				height: "auto", 
+				width: 600, 
+				modal: true, 
+				resizable: false,
+				buttons: [{
+					text: "OK",
+					click: function(e) {
+						if (validarNewUser()) {
+							$(this).dialog("close"); 
+						} else {
+							e.preventDefault();
+						}
+					}
+				},{
+					text: "CANCELAR",
+					click: function(){
+						limpiar();
+						$(this).dialog("close"); 
+					}
+				}]
+			}); 
+//accion de los botones
+			$("#añadir").on("click", function(){
+				cuadro_dialogo.dialog("open"); 
+			});
+			$("#tabla").on("click", "#btn_eliminar", function(){
+				let eliminar = confirm("¿Desea eliminar a " + $(this).siblings("p.nombre").text() + " con DNI: " +  $(this).siblings("p.dni").text() + "?");
+				if (eliminar) {
+					$(this).parent().hide();
+				}
+			});
+		}); 
+	</script> 
+
+</head> 
+<body> 
+
+	<!-- tabla con usuarios -->
+
+	<div id="tabla">
+		<div id="cabecera" class="ui-widget-content ui-corner-all">
+			<p>DNI</p>
+			<p>NOMBRE</p>
+			<p>TELEFONO</p>
+		</div>
+		<div id="usuario" class="ui-widget-content ui-corner-all">
+			<p class="dni">11111111A</p>
+			<p class="nombre">Administrador</p>
+			<p class="telefono">555000001</p>
+			<button id="btn_eliminar" class="ui-button ui-corner-all">ELIMINAR</button>
+		</div>
+	</div>
+	
+	<!-- boton para añadir nuevo usuario -->
+
+	<button id="añadir" class="ui-button ui-corner-all">AÑADIR</button>
+
+	<!-- cuadro de dialogo -->
+
+	<div title="Nuevo contacto" id="dialogo">
+		<form action="#">
+			<label for="dni">DNI:</label>
+			<input type="text" id="dni" required>
+			<output class="error ui-state-error" id="err_dni">Introduce un DNI</output><br /><br />
+			<label for="nombre">NOMBRE:</label>
+			<input type="text" id="nombre" required>
+			<output class="error ui-state-error" id="err_nombre">Introduce un NOMBRE</output><br /><br />
+			<label for="telefono">TELEFONO:</label>
+			<input type="text" id="telefono" required>
+			<output class="error ui-state-error" id="err_tel">Introduce un TELEFONO</output>
+		</form>
+	</div>
+
+</body>
+</html>
